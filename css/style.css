@@ -34,8 +34,9 @@
   bottom: 0;
   right: 0;
   top: 0;
- 
+
 }
+
 
 .site-blocks-cover.overlay {
   background-repeat: no-repeat;
@@ -60,14 +61,16 @@
   max-width: 550px;
   padding: 3rem;
   position: absolute;
-    right: 10%;
-    top:55%;
-  
+  right: 10%;
+  top: 55%;
+
 }
-@media only screen and (max-width: 460px) {
+
+@media only screen and (max-width: 768px) {
   .img-box {
-    margin-top: 28%;
-    min-height: 250px;
+    margin-top: -12%;
+    margin-bottom: 200px;
+    position: relative;
   }
 }
 
