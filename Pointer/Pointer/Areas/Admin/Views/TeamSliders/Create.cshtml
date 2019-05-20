@@ -1,0 +1,34 @@
+﻿@model Pointer.Models.TeamSlider
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@*@using (Html.BeginForm())
+    {*@
+<form method="post" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>TeamSlider</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class=form-group>
+            @Html.LabelFor(m => m.Photo)
+            @Html.TextBoxFor(m => m.Photo, new { @class = "form-control", type = "file", accept = "image/*" })
+            @Html.ValidationMessageFor(m => m.Photo, null, new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-outline-success" />
+            </div>
+        </div>
+    </div>
+    @*  }*@
+</form>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

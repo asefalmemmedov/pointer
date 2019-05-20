@@ -1,0 +1,17 @@
+﻿@model Pointer.Models.Headers
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<div class="row">
+    <div class="col-12">
+        <img src="/Public/img/@Model.Image" style="height:300px; object-fit:contain;" class="form-control" />
+
+        @Html.Raw(Model.Title)
+        <p>@Model.Description</p>
+
+        <a href="/Admin/Header/Edit" class="btn btn-warning btn-block my-4" >Edit</a>
+    </div>
+</div>

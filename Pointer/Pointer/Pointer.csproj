@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -8,7 +9,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{56E08FA2-88B9-4C21-AB25-E9F911146F55}</ProjectGuid>
+    <ProjectGuid>{90E6FBD0-4FAE-4F41-886C-A7B1409A64CF}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -25,6 +26,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -45,6 +47,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -126,78 +134,275 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AboutsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminAuthenticate.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminSettingsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BlogsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ContactsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HeaderController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OurApproachesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ServicesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TeamController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TeamSlidersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TestimonialsController.cs" />
+    <Compile Include="Areas\Admin\Models\LoginModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DAL\PointerContext.cs" />
+    <Compile Include="Extensions\FileExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905140529269_PointerLC1.cs" />
+    <Compile Include="Migrations\201905140529269_PointerLC1.Designer.cs">
+      <DependentUpon>201905140529269_PointerLC1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905140831208_LC1.013.cs" />
+    <Compile Include="Migrations\201905140831208_LC1.013.Designer.cs">
+      <DependentUpon>201905140831208_LC1.013.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905140843322_EndUpdate.cs" />
+    <Compile Include="Migrations\201905140843322_EndUpdate.Designer.cs">
+      <DependentUpon>201905140843322_EndUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905141038457_AddedAdminSetting.cs" />
+    <Compile Include="Migrations\201905141038457_AddedAdminSetting.Designer.cs">
+      <DependentUpon>201905141038457_AddedAdminSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905171839152_update.cs" />
+    <Compile Include="Migrations\201905171839152_update.Designer.cs">
+      <DependentUpon>201905171839152_update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905180801179_LC2.cs" />
+    <Compile Include="Migrations\201905180801179_LC2.Designer.cs">
+      <DependentUpon>201905180801179_LC2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905181016543_Databsaeupdate.cs" />
+    <Compile Include="Migrations\201905181016543_Databsaeupdate.Designer.cs">
+      <DependentUpon>201905181016543_Databsaeupdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905181133244_lastaded.cs" />
+    <Compile Include="Migrations\201905181133244_lastaded.Designer.cs">
+      <DependentUpon>201905181133244_lastaded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905190933006_EmailAdres.cs" />
+    <Compile Include="Migrations\201905190933006_EmailAdres.Designer.cs">
+      <DependentUpon>201905190933006_EmailAdres.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905200704377_BlogUpdate.cs" />
+    <Compile Include="Migrations\201905200704377_BlogUpdate.Designer.cs">
+      <DependentUpon>201905200704377_BlogUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905200729337_ourApproach.cs" />
+    <Compile Include="Migrations\201905200729337_ourApproach.Designer.cs">
+      <DependentUpon>201905200729337_ourApproach.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905200737274_End.cs" />
+    <Compile Include="Migrations\201905200737274_End.Designer.cs">
+      <DependentUpon>201905200737274_End.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905200810046_ErrorOur.cs" />
+    <Compile Include="Migrations\201905200810046_ErrorOur.Designer.cs">
+      <DependentUpon>201905200810046_ErrorOur.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\About.cs" />
+    <Compile Include="Models\AdminSetting.cs" />
+    <Compile Include="Models\Blog.cs" />
+    <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\Header.cs" />
+    <Compile Include="Models\OurApproach.cs" />
+    <Compile Include="Models\Services.cs" />
+    <Compile Include="Models\Team.cs" />
+    <Compile Include="Models\TeamSlider.cs" />
+    <Compile Include="Models\Testimonials.cs" />
+    <Compile Include="Models\TestimonialsSlider.cs" />
+    <Compile Include="Models\VievModels\HomeIndexVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\Utilities.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Areas\Admin\Public\css\font-face.css" />
+    <Content Include="Areas\Admin\Public\css\theme.css" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-100.svg" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-100italic.svg" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-200.svg" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-200italic.svg" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-300.svg" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-300italic.svg" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-500.svg" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-500italic.svg" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-600.svg" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-600italic.svg" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-700.svg" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-700italic.svg" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-800.svg" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-800italic.svg" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-900.svg" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-900italic.svg" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-italic.svg" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-regular.svg" />
+    <Content Include="Areas\Admin\Public\images\Admin\admin.jpg" />
+    <Content Include="Areas\Admin\Public\images\Admin\admin1.jpg" />
+    <Content Include="Areas\Admin\Public\images\Admin\avatar-01.jpg" />
+    <Content Include="Areas\Admin\Public\images\Admin\qaqas.jpg" />
+    <Content Include="Areas\Admin\Public\images\bg-title-01.jpg" />
+    <Content Include="Areas\Admin\Public\images\bg-title-02.jpg" />
+    <Content Include="Areas\Admin\Public\images\icon\avatar-02.jpg" />
+    <Content Include="Areas\Admin\Public\images\icon\avatar-03.jpg" />
+    <Content Include="Areas\Admin\Public\images\icon\avatar-04.jpg" />
+    <Content Include="Areas\Admin\Public\images\icon\avatar-05.jpg" />
+    <Content Include="Areas\Admin\Public\images\icon\avatar-06.jpg" />
+    <Content Include="Areas\Admin\Public\images\icon\avatar-big-01.jpg" />
+    <Content Include="Areas\Admin\Public\images\icon\logo-blue.png" />
+    <Content Include="Areas\Admin\Public\images\icon\logo-mini.png" />
+    <Content Include="Areas\Admin\Public\images\icon\logo-white.png" />
+    <Content Include="Areas\Admin\Public\images\icon\logo.png" />
+    <Content Include="Areas\Admin\Public\images\icon\Untitled-1.jpg" />
+    <Content Include="Areas\Admin\Public\js\main.js" />
+    <Content Include="Areas\Admin\Public\vendor\animsition\animsition.min.css" />
+    <Content Include="Areas\Admin\Public\vendor\animsition\animsition.min.js" />
+    <Content Include="Areas\Admin\Public\vendor\bootstrap-4.1\bootstrap.min.css" />
+    <Content Include="Areas\Admin\Public\vendor\bootstrap-4.1\bootstrap.min.js" />
+    <Content Include="Areas\Admin\Public\vendor\bootstrap-4.1\popper.min.js" />
+    <Content Include="Areas\Admin\Public\vendor\bootstrap-progressbar\bootstrap-progressbar-3.3.4.min.css" />
+    <Content Include="Areas\Admin\Public\vendor\bootstrap-progressbar\bootstrap-progressbar.min.js" />
+    <Content Include="Areas\Admin\Public\vendor\chartjs\Chart.bundle.min.js" />
+    <Content Include="Areas\Admin\Public\vendor\circle-progress\circle-progress.js" />
+    <Content Include="Areas\Admin\Public\vendor\circle-progress\circle-progress.min.js" />
+    <Content Include="Areas\Admin\Public\vendor\countdown\countdowntime.js" />
+    <Content Include="Areas\Admin\Public\vendor\countdown\jquery.countdown.min.js" />
+    <Content Include="Areas\Admin\Public\vendor\countdown\moment-timezone-with-data.min.js" />
+    <Content Include="Areas\Admin\Public\vendor\countdown\moment-timezone.min.js" />
+    <Content Include="Areas\Admin\Public\vendor\countdown\moment.min.js" />
+    <Content Include="Areas\Admin\Public\vendor\counter-up\jquery.counterup.min.js" />
+    <Content Include="Areas\Admin\Public\vendor\counter-up\jquery.waypoints.min.js" />
+    <Content Include="Areas\Admin\Public\vendor\counter-up\waypoints.min.js" />
+    <Content Include="Areas\Admin\Public\vendor\css-hamburgers\hamburgers.css" />
+    <Content Include="Areas\Admin\Public\vendor\css-hamburgers\hamburgers.min.css" />
+    <Content Include="Areas\Admin\Public\vendor\font-awesome-4.7\css\font-awesome.css" />
+    <Content Include="Areas\Admin\Public\vendor\font-awesome-4.7\css\font-awesome.min.css" />
+    <Content Include="Areas\Admin\Public\vendor\font-awesome-4.7\fonts\fontawesome-webfont.svg" />
+    <Content Include="Areas\Admin\Public\vendor\font-awesome-4.7\HELP-US-OUT.txt" />
+    <Content Include="Areas\Admin\Public\vendor\font-awesome-5\css\fontawesome-all.min.css" />
+    <Content Include="Areas\Admin\Public\vendor\font-awesome-5\webfonts\fa-brands-400.svg" />
+    <Content Include="Areas\Admin\Public\vendor\font-awesome-5\webfonts\fa-regular-400.svg" />
+    <Content Include="Areas\Admin\Public\vendor\font-awesome-5\webfonts\fa-solid-900.svg" />
+    <Content Include="Areas\Admin\Public\vendor\jquery-3.2.1.min.js" />
+    <Content Include="Areas\Admin\Public\vendor\jquery-ui.min.js" />
+    <Content Include="Areas\Admin\Public\vendor\lightbox2\dist\css\lightbox.css" />
+    <Content Include="Areas\Admin\Public\vendor\lightbox2\dist\images\close.png" />
+    <Content Include="Areas\Admin\Public\vendor\lightbox2\dist\images\loading.gif" />
+    <Content Include="Areas\Admin\Public\vendor\lightbox2\dist\images\next.png" />
+    <Content Include="Areas\Admin\Public\vendor\lightbox2\dist\images\prev.png" />
+    <Content Include="Areas\Admin\Public\vendor\lightbox2\dist\js\lightbox-plus-jquery.js" />
+    <Content Include="Areas\Admin\Public\vendor\lightbox2\dist\js\lightbox-plus-jquery.min.js" />
+    <Content Include="Areas\Admin\Public\vendor\lightbox2\dist\js\lightbox.js" />
+    <Content Include="Areas\Admin\Public\vendor\lightbox2\dist\js\lightbox.min.js" />
+    <Content Include="Areas\Admin\Public\vendor\lightbox2\src\css\lightbox.css" />
+    <Content Include="Areas\Admin\Public\vendor\lightbox2\src\images\close.png" />
+    <Content Include="Areas\Admin\Public\vendor\lightbox2\src\images\loading.gif" />
+    <Content Include="Areas\Admin\Public\vendor\lightbox2\src\images\next.png" />
+    <Content Include="Areas\Admin\Public\vendor\lightbox2\src\images\prev.png" />
+    <Content Include="Areas\Admin\Public\vendor\lightbox2\src\js\lightbox.js" />
+    <Content Include="Areas\Admin\Public\vendor\mdi-font\css\material-design-iconic-font.css" />
+    <Content Include="Areas\Admin\Public\vendor\mdi-font\css\material-design-iconic-font.min.css" />
+    <Content Include="Areas\Admin\Public\vendor\mdi-font\fonts\Material-Design-Iconic-Font.svg" />
+    <Content Include="Areas\Admin\Public\vendor\perfect-scrollbar\perfect-scrollbar.css" />
+    <Content Include="Areas\Admin\Public\vendor\perfect-scrollbar\perfect-scrollbar.js" />
+    <Content Include="Areas\Admin\Public\vendor\perfect-scrollbar\perfect-scrollbar.min.js" />
+    <Content Include="Areas\Admin\Public\vendor\progressbar\progressbar.js" />
+    <Content Include="Areas\Admin\Public\vendor\progressbar\progressbar.min.js" />
+    <Content Include="Areas\Admin\Public\vendor\select2\select2.min.css" />
+    <Content Include="Areas\Admin\Public\vendor\select2\select2.min.js" />
+    <Content Include="Areas\Admin\Public\vendor\slick\ajax-loader.gif" />
+    <Content Include="Areas\Admin\Public\vendor\slick\fonts\slick.svg" />
+    <Content Include="Areas\Admin\Public\vendor\slick\slick-theme.css" />
+    <Content Include="Areas\Admin\Public\vendor\slick\slick.css" />
+    <Content Include="Areas\Admin\Public\vendor\slick\slick.js" />
+    <Content Include="Areas\Admin\Public\vendor\slick\slick.min.js" />
+    <Content Include="Areas\Admin\Public\vendor\smk-accordion\accordion.css" />
+    <Content Include="Areas\Admin\Public\vendor\smk-accordion\accordion.js" />
+    <Content Include="Areas\Admin\Public\vendor\smk-accordion\accordion.min.js" />
+    <Content Include="Areas\Admin\Public\vendor\sweetalert\sweetalert.min.js" />
+    <Content Include="Areas\Admin\Public\vendor\vector-map\jquery.vmap.brazil.js" />
+    <Content Include="Areas\Admin\Public\vendor\vector-map\jquery.vmap.europe.js" />
+    <Content Include="Areas\Admin\Public\vendor\vector-map\jquery.vmap.france.js" />
+    <Content Include="Areas\Admin\Public\vendor\vector-map\jquery.vmap.germany.js" />
+    <Content Include="Areas\Admin\Public\vendor\vector-map\jquery.vmap.js" />
+    <Content Include="Areas\Admin\Public\vendor\vector-map\jquery.vmap.min.js" />
+    <Content Include="Areas\Admin\Public\vendor\vector-map\jquery.vmap.russia.js" />
+    <Content Include="Areas\Admin\Public\vendor\vector-map\jquery.vmap.sampledata.js" />
+    <Content Include="Areas\Admin\Public\vendor\vector-map\jquery.vmap.usa.js" />
+    <Content Include="Areas\Admin\Public\vendor\vector-map\jquery.vmap.world.js" />
+    <Content Include="Areas\Admin\Public\vendor\vector-map\jqvmap.min.css" />
+    <Content Include="Areas\Admin\Public\vendor\wow\animate.css" />
+    <Content Include="Areas\Admin\Public\vendor\wow\wow.min.js" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\css\aos.css" />
-    <Content Include="Content\css\bootstrap-datepicker.css" />
-    <Content Include="Content\css\bootstrap.min.css" />
-    <Content Include="Content\css\bootstrap\bootstrap-grid.css" />
-    <Content Include="Content\css\bootstrap\bootstrap-reboot.css" />
-    <Content Include="Content\css\bootstrap\bootstrap.css" />
-    <Content Include="Content\css\jquery-ui.css" />
-    <Content Include="Content\css\jquery.fancybox.min.css" />
-    <Content Include="Content\css\magnific-popup.css" />
-    <Content Include="Content\css\mediaelementplayer.css" />
-    <Content Include="Content\css\owl.carousel.css" />
-    <Content Include="Content\css\owl.carousel.min.css" />
-    <Content Include="Content\css\owl.theme.default.css" />
-    <Content Include="Content\css\owl.theme.default.min.css" />
-    <Content Include="Content\css\style.css" />
-    <Content Include="Content\img\about_1.jpg" />
-    <Content Include="Content\img\hero_2.jpg" />
-    <Content Include="Content\img\img_1.jpg" />
-    <Content Include="Content\img\img_2.jpg" />
-    <Content Include="Content\img\img_3.jpg" />
-    <Content Include="Content\img\img_big_1 %281%29.jpg" />
-    <Content Include="Content\img\img_big_1.jpg" />
-    <Content Include="Content\img\person_1.jpg" />
-    <Content Include="Content\img\person_2.jpg" />
-    <Content Include="Content\img\person_3.jpg" />
-    <Content Include="Content\img\person_4.jpg" />
-    <Content Include="Content\img\person_5.jpg" />
-    <Content Include="Content\img\person_6.jpg" />
-    <Content Include="Content\img\person_7.jpg" />
-    <Content Include="Content\img\person_8.jpg" />
-    <Content Include="Content\img\slide_1.jpg" />
-    <Content Include="Content\img\slide_2.jpg" />
-    <Content Include="Content\img\slide_3.jpg" />
-    <Content Include="Content\img\slide_4.jpg" />
-    <Content Include="Content\js\main.js" />
-    <Content Include="Content\js\owl.carousel.js" />
-    <Content Include="Content\js\owl.carousel.min.js" />
     <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Public\css\aos.css" />
+    <Content Include="Public\css\bootstrap-datepicker.css" />
+    <Content Include="Public\css\bootstrap.min.css" />
+    <Content Include="Public\css\bootstrap\bootstrap-grid.css" />
+    <Content Include="Public\css\bootstrap\bootstrap-reboot.css" />
+    <Content Include="Public\css\bootstrap\bootstrap.css" />
+    <Content Include="Public\css\jquery-ui.css" />
+    <Content Include="Public\css\jquery.fancybox.min.css" />
+    <Content Include="Public\css\magnific-popup.css" />
+    <Content Include="Public\css\mediaelementplayer.css" />
+    <Content Include="Public\css\owl.carousel.css" />
+    <Content Include="Public\css\owl.carousel.min.css" />
+    <Content Include="Public\css\owl.theme.default.css" />
+    <Content Include="Public\css\owl.theme.default.min.css" />
+    <Content Include="Public\css\style.css" />
+    <Content Include="Public\img\about_1.jpg" />
+    <Content Include="Public\img\hero_2.jpg" />
+    <Content Include="Public\img\img_1.jpg" />
+    <Content Include="Public\img\img_2.jpg" />
+    <Content Include="Public\img\img_3.jpg" />
+    <Content Include="Public\img\img_big_1 %281%29.jpg" />
+    <Content Include="Public\img\img_big_1.jpg" />
+    <Content Include="Public\img\person_1.jpg" />
+    <Content Include="Public\img\person_2.jpg" />
+    <Content Include="Public\img\person_3.jpg" />
+    <Content Include="Public\img\person_4.jpg" />
+    <Content Include="Public\img\person_5.jpg" />
+    <Content Include="Public\img\person_6.jpg" />
+    <Content Include="Public\img\person_7.jpg" />
+    <Content Include="Public\img\person_8.jpg" />
+    <Content Include="Public\img\slide_1.jpg" />
+    <Content Include="Public\img\slide_2.jpg" />
+    <Content Include="Public\img\slide_3.jpg" />
+    <Content Include="Public\img\slide_4.jpg" />
+    <Content Include="Public\js\main.js" />
+    <Content Include="Public\js\owl.carousel.js" />
+    <Content Include="Public\js\owl.carousel.min.js" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Content\css\.DS_Store" />
-    <Content Include="Content\css\bootstrap.min.css.map" />
-    <Content Include="Content\img\.DS_Store" />
-    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.3.1.js" />
-    <Content Include="Scripts\jquery-3.3.1.min.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\esm\popper-utils.js" />
+    <Content Include="Scripts\esm\popper-utils.min.js" />
+    <Content Include="Scripts\esm\popper.js" />
+    <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\popper-utils.js" />
+    <Content Include="Scripts\popper-utils.min.js" />
+    <Content Include="Scripts\popper.js" />
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\umd\popper-utils.js" />
+    <Content Include="Scripts\umd\popper-utils.min.js" />
+    <Content Include="Scripts\umd\popper.js" />
+    <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -215,22 +420,234 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="Areas\Admin\Views\About\" />
+    <Folder Include="Areas\Admin\Views\Acount\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-100.eot" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-100.ttf" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-100.woff" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-100.woff2" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-100italic.eot" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-100italic.ttf" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-100italic.woff" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-100italic.woff2" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-200.eot" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-200.ttf" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-200.woff" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-200.woff2" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-200italic.eot" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-200italic.ttf" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-200italic.woff" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-200italic.woff2" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-300.eot" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-300.ttf" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-300.woff" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-300.woff2" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-300italic.eot" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-300italic.ttf" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-300italic.woff" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-300italic.woff2" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-500.eot" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-500.ttf" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-500.woff" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-500.woff2" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-500italic.eot" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-500italic.ttf" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-500italic.woff" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-500italic.woff2" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-600.eot" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-600.ttf" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-600.woff" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-600.woff2" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-600italic.eot" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-600italic.ttf" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-600italic.woff" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-600italic.woff2" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-700.eot" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-700.ttf" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-700.woff" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-700.woff2" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-700italic.eot" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-700italic.ttf" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-700italic.woff" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-700italic.woff2" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-800.eot" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-800.ttf" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-800.woff" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-800.woff2" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-800italic.eot" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-800italic.ttf" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-800italic.woff" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-800italic.woff2" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-900.eot" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-900.ttf" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-900.woff" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-900.woff2" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-900italic.eot" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-900italic.ttf" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-900italic.woff" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-900italic.woff2" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-italic.eot" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-italic.ttf" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-italic.woff" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-italic.woff2" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-regular.eot" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-regular.ttf" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-regular.woff" />
+    <Content Include="Areas\Admin\Public\fonts\poppins\poppins-v5-latin-regular.woff2" />
+    <Content Include="Areas\Admin\Public\vendor\font-awesome-4.7\fonts\fontawesome-webfont.eot" />
+    <Content Include="Areas\Admin\Public\vendor\font-awesome-4.7\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Areas\Admin\Public\vendor\font-awesome-4.7\fonts\fontawesome-webfont.woff" />
+    <Content Include="Areas\Admin\Public\vendor\font-awesome-4.7\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Areas\Admin\Public\vendor\font-awesome-4.7\fonts\FontAwesome.otf" />
+    <Content Include="Areas\Admin\Public\vendor\font-awesome-5\webfonts\fa-brands-400.eot" />
+    <Content Include="Areas\Admin\Public\vendor\font-awesome-5\webfonts\fa-brands-400.ttf" />
+    <Content Include="Areas\Admin\Public\vendor\font-awesome-5\webfonts\fa-brands-400.woff" />
+    <Content Include="Areas\Admin\Public\vendor\font-awesome-5\webfonts\fa-brands-400.woff2" />
+    <Content Include="Areas\Admin\Public\vendor\font-awesome-5\webfonts\fa-regular-400.eot" />
+    <Content Include="Areas\Admin\Public\vendor\font-awesome-5\webfonts\fa-regular-400.ttf" />
+    <Content Include="Areas\Admin\Public\vendor\font-awesome-5\webfonts\fa-regular-400.woff" />
+    <Content Include="Areas\Admin\Public\vendor\font-awesome-5\webfonts\fa-regular-400.woff2" />
+    <Content Include="Areas\Admin\Public\vendor\font-awesome-5\webfonts\fa-solid-900.eot" />
+    <Content Include="Areas\Admin\Public\vendor\font-awesome-5\webfonts\fa-solid-900.ttf" />
+    <Content Include="Areas\Admin\Public\vendor\font-awesome-5\webfonts\fa-solid-900.woff" />
+    <Content Include="Areas\Admin\Public\vendor\font-awesome-5\webfonts\fa-solid-900.woff2" />
+    <Content Include="Areas\Admin\Public\vendor\lightbox2\dist\js\lightbox-plus-jquery.min.map" />
+    <Content Include="Areas\Admin\Public\vendor\lightbox2\dist\js\lightbox.min.map" />
+    <Content Include="Areas\Admin\Public\vendor\mdi-font\fonts\Material-Design-Iconic-Font.eot" />
+    <Content Include="Areas\Admin\Public\vendor\mdi-font\fonts\Material-Design-Iconic-Font.ttf" />
+    <Content Include="Areas\Admin\Public\vendor\mdi-font\fonts\Material-Design-Iconic-Font.woff" />
+    <Content Include="Areas\Admin\Public\vendor\mdi-font\fonts\Material-Design-Iconic-Font.woff2" />
+    <Content Include="Areas\Admin\Public\vendor\slick\config.rb" />
+    <Content Include="Areas\Admin\Public\vendor\slick\fonts\slick.eot" />
+    <Content Include="Areas\Admin\Public\vendor\slick\fonts\slick.ttf" />
+    <Content Include="Areas\Admin\Public\vendor\slick\fonts\slick.woff" />
+    <Content Include="Areas\Admin\Public\vendor\slick\slick-theme.less" />
+    <Content Include="Areas\Admin\Public\vendor\slick\slick-theme.scss" />
+    <Content Include="Areas\Admin\Public\vendor\slick\slick.less" />
+    <Content Include="Areas\Admin\Public\vendor\slick\slick.scss" />
+    <Content Include="Areas\Admin\Views\Shared\AdminLayout.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Header\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Header\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Abouts\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Abouts\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Team\Index.cshtml" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Areas\Admin\Views\Team\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\TeamSliders\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\TeamSliders\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\TeamSliders\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\TeamSliders\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Services\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Services\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Settings\ChangeAvatar.cshtml" />
+    <Content Include="Areas\Admin\Views\Services\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Services\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Contacts\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Contacts\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Testimonials\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Testimonials\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Testimonials\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Testimonials\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Blogs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Blogs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Blogs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Blogs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\OurApproaches\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\OurApproaches\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\OurApproaches\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\OurApproaches\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminSettings\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminSettings\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminSettings\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminSettings\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminSettings\Index.cshtml" />
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <Content Include="Public\css\.DS_Store" />
+    <Content Include="Public\css\bootstrap.min.css.map" />
+    <Content Include="Public\img\.DS_Store" />
+    <Content Include="Scripts\umd\popper.min.js.map" />
+    <Content Include="Scripts\umd\popper.js.map" />
+    <Content Include="Scripts\umd\popper-utils.min.js.map" />
+    <Content Include="Scripts\umd\popper-utils.js.map" />
+    <Content Include="Scripts\README.md" />
+    <Content Include="Scripts\popper.min.js.map" />
+    <Content Include="Scripts\popper.js.map" />
+    <Content Include="Scripts\popper-utils.min.js.map" />
+    <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Scripts\esm\popper.min.js.map" />
+    <Content Include="Scripts\esm\popper.js.map" />
+    <Content Include="Scripts\esm\popper-utils.min.js.map" />
+    <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Views\Shared\ContactInfo.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201905140529269_PointerLC1.resx">
+      <DependentUpon>201905140529269_PointerLC1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905140831208_LC1.013.resx">
+      <DependentUpon>201905140831208_LC1.013.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905140843322_EndUpdate.resx">
+      <DependentUpon>201905140843322_EndUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905141038457_AddedAdminSetting.resx">
+      <DependentUpon>201905141038457_AddedAdminSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905171839152_update.resx">
+      <DependentUpon>201905171839152_update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905180801179_LC2.resx">
+      <DependentUpon>201905180801179_LC2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905181016543_Databsaeupdate.resx">
+      <DependentUpon>201905181016543_Databsaeupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905181133244_lastaded.resx">
+      <DependentUpon>201905181133244_lastaded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905190933006_EmailAdres.resx">
+      <DependentUpon>201905190933006_EmailAdres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905200704377_BlogUpdate.resx">
+      <DependentUpon>201905200704377_BlogUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905200729337_ourApproach.resx">
+      <DependentUpon>201905200729337_ourApproach.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905200737274_End.resx">
+      <DependentUpon>201905200737274_End.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905200810046_ErrorOur.resx">
+      <DependentUpon>201905200810046_ErrorOur.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
@@ -242,9 +659,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>53206</DevelopmentServerPort>
+          <DevelopmentServerPort>50045</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:53206/</IISUrl>
+          <IISUrl>http://localhost:50045/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

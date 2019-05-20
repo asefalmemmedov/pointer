@@ -1,0 +1,58 @@
+﻿@model Pointer.Models.Team
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+<form method="post" action="@Url.Action("Create", "Team")" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+    <div class="col-10">
+      
+        <div class=form-group>
+            @Html.LabelFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
+        </div>
+        <div class=form-group>
+            @Html.LabelFor(m => m.LastName)
+            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.LastName, null, new { @class = "text-danger" })
+        </div>
+        <div class=form-group>
+            @Html.LabelFor(m => m.Profection)
+            @Html.TextBoxFor(m => m.Profection, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Profection, null, new { @class = "text-danger" })
+        </div>
+        <div class=form-group>
+            @Html.LabelFor(m => m.Facebook)
+            @Html.TextBoxFor(m => m.Facebook, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Facebook, null, new { @class = "text-danger" })
+        </div>
+        <div class=form-group>
+            @Html.LabelFor(m => m.Linkedn)
+            @Html.TextBoxFor(m => m.Linkedn, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Linkedn, null, new { @class = "text-danger" })
+        </div>
+        <div class=form-group>
+            @Html.LabelFor(m => m.Twitter)
+            @Html.TextBoxFor(m => m.Twitter, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Twitter, null, new { @class = "text-danger" })
+        </div>
+        <div class=form-group>
+            @Html.LabelFor(m => m.Instagram)
+            @Html.TextBoxFor(m => m.Instagram, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Instagram, null, new { @class = "text-danger" })
+        </div>
+
+        <div class=form-group>
+            @Html.LabelFor(m => m.Photo)
+            @Html.TextBoxFor(m => m.Photo, new { @class = "form-control", type = "file", accept = "Image/*" })
+            @Html.ValidationMessageFor(m => m.Photo, null, new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="mb-5 pb-5 mt-5">
+        <input type="submit" class="btn btn-outline-success btn-block " value="Create" />
+    </div>
+</form>

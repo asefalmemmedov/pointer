@@ -8,16 +8,17 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link href="~/Content/css/owl.carousel.css" rel="stylesheet" />
-    <link href="~/Content/css/owl.theme.default.min.css" rel="stylesheet" />
-    <link href="~/Content/css/style.css" rel="stylesheet" />
-    <title>Pointer</title>
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/Public/css/owl.carousel.css">
+    <link rel="stylesheet" href="~/Public/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/Public/css/style.css">
+    <title>@ViewBag.Title</title>
 </head>
 
 <body data-spy="scroll">
+    <!------------------------------------------------ Nav Bar start------------------------------------------------------------- -->
     <section id="header">
         <div class="row">
             <div class="container">
@@ -52,20 +53,21 @@
                                     <a href="#contact" class="nav-link">Contact</a>
                                 </li>
                             </ul>
-                            <form class="form-inline my-2 my-lg-0">
+                            @*<form class="form-inline my-2 my-lg-0">
                                 <input class="form-control mr-sm-2" type="search" placeholder="Search"
                                        aria-label="Search">
                                 <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
-                            </form>
+                            </form>*@
                         </div>
                     </div>
                 </nav>
             </div>
         </div>
     </section>
+    <!--------------------------------------------------------- Nav Bar End------------------------ -->
 
+    <!------------------------------------------------------Footer Section Start -------------------------------------------------------------->
     @RenderBody()
-    <hr />
 
     <footer class="site-footer">
         <div class="container">
@@ -139,9 +141,11 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
-    <script src="~/Content/js/owl.carousel.js"></script>
-    <script src="~/Content/js/owl.carousel.min.js"></script>
-    <script src="~/Content/js/main.js"></script>
+    <script src="~/Public/js/owl.carousel.min.js"></script>
+    <script src="~/Public/js/main.js">
+
+    </script>
+    @RenderSection("Scripts",false)
 </body>
 
 </html>

@@ -1,0 +1,62 @@
+﻿@model Pointer.Models.ViewModels.HomeIndexVM
+<form action="@Url.Action("ContactInfo","Home")" method="post" class="p-5 bg-white">
+    @Html.AntiForgeryToken()
+    <h2 class="h4 text-black mb-5">Contact Form</h2>
+
+    <div class="row form-group">
+        <div class="col-md-6 mb-3 mb-md-0">
+            <label class="text-black" for="fname">First Name</label>
+            @Html.TextBoxFor(m => m.Contact.FirstName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Contact.FirstName, null, new { @class = "text-danger" })
+
+        </div>
+        <div class="col-md-6">
+            <label class="text-black">Last Name</label>
+            @Html.TextBoxFor(m => m.Contact.LastName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Contact.LastName, null, new { @class = "text-danger" })
+
+        </div>
+    </div>
+
+    <div class="row form-group">
+
+        <div class="col-md-12">
+            <label class="text-black" for="email">Email</label>
+            @Html.TextBoxFor(m => m.Contact.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Contact.Email, null, new { @class = "text-danger" })
+
+        </div>
+    </div>
+
+    <div class="row form-group">
+
+        <div class="col-md-12">
+            <label class="text-black" for="subject">Subject</label>
+            @Html.TextBoxFor(m => m.Contact.Subject, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Contact.Subject, null, new { @class = "text-danger" })
+
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-md-12">
+            <label class="text-black" for="message">Message</label>
+            @Html.TextAreaFor(m => m.Contact.Message, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Contact.Message,null, new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-md-12">
+            <input type="submit" value="Send Message" class="btn btn-danger btn-md text-white">
+        </div>
+    </div>
+
+
+</form>
+
+@section Scripts {
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+}
+

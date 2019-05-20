@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Pointer.Models.Team>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@*@section internalStyle{
+    <style>
+        table td, table th {
+            vertical-align: middle !important;
+        }
+    </style>
+}*@
+
+    <div class="row">
+
+        <div class="col-md-12">
+            <a href="/Admin/Team/Create" class="btn btn-outline-dark btn-block my-4"><i class="fas fa-user-plus"></i></a>
+            <row>
+                <table class="table table-bordered table-striped col-12">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>LastName</th>
+                            <th>Profection</th>
+                            <th>Facebook</th>
+                            <th>Twitter</th>
+                            <th>Linkedn</th>
+                            <th>Instagram</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var team in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="~/Public/@team.Image" class="img-thumbnail" />
+                                </td>
+                                <td>@team.Name</td>
+                                <td>@team.LastName</td>
+                                <td>@team.Profection</td>
+                                <td>@team.Facebook</td>
+                                <td>@team.Twitter</td>
+                                <td>@team.Linkedn</td>
+                                <td>@team.Instagram</td>
+                                <td>
+                                    <a href="/Admin/Team/Edit/@team.Id" class="btn btn-warning"><i class="fas fa-user-edit"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </row>
+            
+     
+    </div>
+</div>
+
+
+
+
